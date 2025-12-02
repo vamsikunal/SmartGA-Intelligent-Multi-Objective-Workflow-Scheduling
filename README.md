@@ -101,43 +101,6 @@ This repository contains the implementation for the research paper:
 
 **"SmartGA: An Intelligent Multi-Objective Genetic Algorithm for Cloud-Edge Workflow Scheduling"**
 
-### Abstract
-
-SmartGA addresses workflow scheduling in heterogeneous cloud-edge environments through three innovations: heuristic population seeding, adaptive parameter control, and real-relative encoding. Experimental validation demonstrates 22% makespan improvement over standard GA, perfect hypervolume (1.000), and sub-second execution time (0.85s) for 100-task workflows.
-
-### Paper Sections
-
-- **Section I**: Baseline Performance (Montage-100)
-- **Section II**: Scalability Analysis (50-500 tasks)
-- **Section III**: Adaptability Study (Ablation + Cross-workflow)
-- **Section IV**: Comparative Evaluation (6 algorithms)
-
-Full paper available in `FinalResult/` directory.
-
-## Experimental Results
-
-### Comparative Study (Section IV)
-
-SmartGA outperforms 5 state-of-the-art algorithms:
-
-- **vs GA**: 22.0% better makespan
-- **vs R2GA**: 4.2% better makespan
-- **vs NSGA-II**: 7.9% better makespan
-- **vs PSO-SA**: 6.0% better makespan
-- **vs WOA**: 15.0% better makespan
-
-### Scalability (Section II)
-
-- **50 tasks**: 0.32s runtime, 3.45s makespan
-- **100 tasks**: 0.85s runtime, 6.81s makespan
-- **500 tasks**: 5.12s runtime, 28.34s makespan
-- **Complexity**: O(n^0.73) sub-linear scaling
-
-### Ablation Study (Section III)
-
-- **Heuristic Seeding**: +11.7% makespan improvement
-- **Adaptive Parameters**: +8.2% makespan improvement
-- **Combined**: +30% faster convergence
 
 ## Algorithm Components
 
@@ -162,35 +125,20 @@ Chromosome: `[p1, p2, ..., pn, r1, r2, ..., rn]`
 - `pi`: Task priority [0,1]
 - `ri`: Resource preference [0,1]
 
-## Citation
-
-If you use this code in your research, please cite:
-
-```bibtex
-@article{smartga2025,
-  title={SmartGA: An Intelligent Multi-Objective Genetic Algorithm for Cloud-Edge Workflow Scheduling},
-  author={Your Name},
-  journal={IEEE Transactions on Parallel and Distributed Systems},
-  year={2025}
-}
-```
 
 ## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
+
+## Author
+
+**Dept. of CSE (M.tech)**  
+National Institute of Technology Karnataka, Surathkal, Mangalore - 575025, Bharat
 
 ## Acknowledgments
 
 - NSGA-II implementation based on Deb et al. (2002)
 - HEFT heuristic from Topcuoglu et al. (2002)
 - Workflow benchmarks from Pegasus WMS
-
-## Contact
-
-For questions or collaborations:
-- Email: your.email@example.com
-- GitHub Issues: [Create an issue](https://github.com/yourusername/smartga-workflow-scheduling/issues)
-
----
 
 **Keywords**: Cloud-edge computing, workflow scheduling, multi-objective optimization, genetic algorithms, NSGA-II, heuristic seeding, adaptive parameter control, Pareto optimization
