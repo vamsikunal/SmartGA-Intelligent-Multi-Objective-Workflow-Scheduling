@@ -1,0 +1,45 @@
+# Extreme AWS Configuration - Maximum Conflicts
+# Designed to make HEFT fail and multi-objective algorithms shine
+
+simulation:
+  bandwidth_cloud_edge: 500  # Limited internet bandwidth (realistic constraint)
+  bandwidth_edge_edge: 10000 # Fast local edge network
+  
+resources:
+  # AWS EC2 c6i.4xlarge (16 vCPU) - VERY EXPENSIVE but FAST
+  cloud_nodes:
+    count: 1                 # Only 1 cloud node (bottleneck!)
+    mips: 25000              # Very powerful
+    ram: 32000               # 32 GB
+    cost: 10.0               # $1.00/hour = $10 per 10-hour (EXPENSIVE!)
+    power_active: 250        # High power consumption
+    power_idle: 50
+    failure_rate: 0.00001    # Very reliable but expensive
+    
+  # Edge Cluster - CHEAP but SLOWER
+  edge_nodes:
+    count: 12                # Many edge nodes
+    mips: 3000               # Moderate performance
+    ram: 8000                # 8 GB
+    cost: 0.02               # Almost free (owned)
+    power_active: 20         # Low power
+    power_idle: 4
+    failure_rate: 0.001      # Less reliable
+
+algorithm:
+  name: all
+  population_size: 120       # Large population
+  generations: 60            # Many generations
+  mutation_rate: 0.2         # High diversity
+  crossover_rate: 0.9        # Strong gene mixing
+
+workflow:
+  name: extreme_challenge
+  source: file
+  type: montage              # Most complex workflow
+  size: 800                  # Large workflow
+  file_path: null
+
+logging:
+  level: INFO
+  save_dir: results/

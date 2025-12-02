@@ -1,0 +1,46 @@
+# AWS Cloud-Edge Simulation Configuration
+# Based on realistic AWS EC2 instance types and pricing
+
+simulation:
+  bandwidth_cloud_edge: 1000 # Mbps (Internet to Edge)
+  bandwidth_edge_edge: 10000 # Mbps (Local Edge network)
+  
+resources:
+  # AWS EC2 Cloud Instances (US-East-1 pricing)
+  cloud_nodes:
+    count: 2
+    # c6i.2xlarge equivalent (8 vCPU, compute optimized)
+    mips: 15000              # High performance
+    ram: 16000               # 16 GB
+    cost: 3.40               # $0.34/hour = ~$3.40 per 10-hour workday
+    power_active: 150        # Watts (data center power)
+    power_idle: 30           # Watts
+    failure_rate: 0.00001    # Very reliable (0.001% failure)
+    
+  edge_nodes:
+    count: 8
+    # Raspberry Pi 4 / Edge Gateway equivalent
+    mips: 2500               # ARM Cortex-A72, ~2.5 GHz
+    ram: 4000                # 4 GB
+    cost: 0.05               # Minimal cost (owned hardware)
+    power_active: 15         # Watts (low power device)
+    power_idle: 3            # Watts
+    failure_rate: 0.0005     # Less reliable (0.05% failure)
+
+algorithm:
+  name: all                  # Run all algorithms for comparison
+  population_size: 100       # Larger population for better exploration
+  generations: 50            # More generations for convergence
+  mutation_rate: 0.15        # Slightly higher for diversity
+  crossover_rate: 0.85       # High crossover for gene mixing
+
+workflow:
+  name: aws_realistic_test
+  source: file               # Use real Pegasus workflows
+  type: montage              # Complex astronomy workflow
+  size: 500                  # Large enough to show differences
+  file_path: null            # Dynamic generation
+
+logging:
+  level: INFO
+  save_dir: results/

@@ -1,0 +1,47 @@
+# ==========================================================
+# Research-Friendly Balanced Cloud–Edge Simulation Config
+# Tuned for Workflow Scheduling Experiments (Pegasus)
+# ==========================================================
+
+simulation:
+  bandwidth_cloud_edge: 500     # Mbps (balanced – not too slow, not idealistic)
+  bandwidth_edge_edge: 1000     # Mbps (1 Gbps LAN – standard research assumption)
+
+resources:
+  cloud_nodes:
+    count: 2
+    # Balanced EC2-like compute (8 vCPUs)
+    mips: 48000                 # ~6000 MIPS x 8 vCPU (research average)
+    ram: 16000                  # 16 GB RAM
+    cost: 0.34                  # hourly cost (clear & realistic)
+    power_active: 150           # typical for mid-size server
+    power_idle: 60              # research-friendly (not too low)
+    failure_rate: 0.0001        # 0.01% probability (rare but possible)
+
+  edge_nodes:
+    count: 8
+    # Industrial-grade gateway (4 cores)
+    mips: 8000                  # ~2000 MIPS/core (balanced ARM estimate)
+    ram: 8000                   # 8 GB RAM (better for workflows)
+    cost: 0.02                  # minimal edge usage cost
+    power_active: 12            # 10–15W typical for IoT gateways
+    power_idle: 4               # idle power
+    failure_rate: 0.005         # 0.5% – realistic for edge instability
+
+algorithm:
+  name: all                     # Compare SmartGA, R2GA, GA, WOA, PSO-SA
+  population_size: 50           # Balanced: fast but good diversity
+  generations: 30               # Enough for convergence without bottlenecks
+  mutation_rate: 0.12           # Balanced exploration
+  crossover_rate: 0.85          # Standard research crossover rate
+
+workflow:
+  name: balanced_test
+  source: synthetic
+  type: montage
+  size: 100                     # Default test size
+  file_path: null
+
+logging:
+  level: INFO
+  save_dir: results/

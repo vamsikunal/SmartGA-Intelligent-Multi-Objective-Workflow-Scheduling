@@ -1,0 +1,21 @@
+# Core Dependencies
+simpy==4.1.1
+networkx==3.2.1
+numpy==1.26.2
+pandas==2.1.4
+matplotlib==3.8.2
+plotly==5.18.0
+
+# Multi-objective Optimization
+deap==1.4.1
+pymoo==0.6.1.1
+
+# Utilities
+pyyaml==6.0.1
+scipy==1.11.4
+openpyxl==3.1.5
+xlsxwriter==3.2.9
+
+# Optional: Pegasus WMS (for real workflow generation)
+# Install via: pip install pegasus-wms
+# Or use system package: sudo apt install pegasusworkflow

@@ -1,0 +1,39 @@
+simulation:
+  bandwidth_cloud_edge: 1000 # Mbps
+  bandwidth_edge_edge: 10000 # Mbps
+  
+resources:
+  cloud_nodes:
+    count: 2
+    mips: 10000
+    ram: 16000
+    cost: 0.5
+    power_active: 100
+    power_idle: 10
+    failure_rate: 0.0001
+  edge_nodes:
+    count: 5
+    mips: 2000
+    ram: 4000
+    cost: 0.1
+    power_active: 20
+    power_idle: 2
+    failure_rate: 0.001
+
+algorithm:
+  name: all
+  population_size: 50
+  generations: 20
+  mutation_rate: 0.1
+  crossover_rate: 0.8
+
+workflow:
+  name: test
+  source: file # Options: synthetic (generated), file (real Pegasus workflows)
+  type: cybershake # Workflow type: random, montage, cybershake, sipht, diamond
+  size: 20 # Number of tasks (used for both synthetic and Pegasus generation)
+  file_path: null # Optional: Path to pre-generated workflow file (overrides dynamic generation)
+
+logging:
+  level: INFO
+  save_dir: results/

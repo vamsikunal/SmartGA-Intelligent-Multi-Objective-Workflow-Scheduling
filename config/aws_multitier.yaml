@@ -1,0 +1,45 @@
+# Multi-Tier AWS Configuration
+# Simulates real-world: Cloud (expensive, fast) + Fog (medium) + Edge (cheap, slow)
+
+simulation:
+  bandwidth_cloud_edge: 1000
+  bandwidth_edge_edge: 10000
+  
+resources:
+  # Tier 1: AWS Cloud - c6i.xlarge (4 vCPU)
+  cloud_nodes:
+    count: 3
+    mips: 12000              # Fast
+    ram: 8000
+    cost: 2.5                # Expensive ($0.25/hour)
+    power_active: 120
+    power_idle: 25
+    failure_rate: 0.00001    # 99.999% reliable
+    
+  # Tier 2: Edge Gateway / Fog - NVIDIA Jetson
+  edge_nodes:
+    count: 6
+    mips: 5000               # Medium speed
+    ram: 8000
+    cost: 0.2                # Moderate cost (depreciation)
+    power_active: 30
+    power_idle: 8
+    failure_rate: 0.0002     # 99.98% reliable
+
+algorithm:
+  name: all
+  population_size: 80
+  generations: 40
+  mutation_rate: 0.15
+  crossover_rate: 0.85
+
+workflow:
+  name: multitier_test
+  source: file
+  type: montage
+  size: 400
+  file_path: null
+
+logging:
+  level: INFO
+  save_dir: results/

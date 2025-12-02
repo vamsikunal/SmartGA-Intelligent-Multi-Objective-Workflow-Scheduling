@@ -1,0 +1,13 @@
+# SmartGA Training Requirements - Google Colab Compatible
+
+# Core dependencies
+torch>=2.0.0
+numpy>=1.24.0
+networkx>=3.0
+matplotlib>=3.7.0
+
+# RL (using gymnasium, the maintained fork of gym)
+gymnasium>=0.29.0
+
+# Utilities
+tqdm>=4.65.0
