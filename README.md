@@ -64,14 +64,6 @@ python main.py --config config/config.yaml
 
 To change experiment parameters (algorithm, workflow size, etc.), edit `config/config.yaml`.
 
-### Data Consolidation
-
-To combine the generated CSV results into a single Excel file:
-
-```bash
-python FinalResult/combine_csvs.py
-```
-
 ## Project Structure
 
 ```
